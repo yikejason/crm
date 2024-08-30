@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package crm;
+
+message User {
+  uint64 id = 1;
+  string name = 2;
+  string email = 3;
+  google.protobuf.Timestamp created_at = 4;
+}
+
+message GetUsersRequest {
+  uint64 id = 1;
+}
+
+message CreateUserRequest {
+  string name = 1;
+  string email = 2;
+}
+
+service UserService {
+  rpc GetUsers(GetUsersRequest) returns (User) {}
+  rpc CreateUser(CreateUserRequest) returns (User) {}
+}
